@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+
+
+<style> body  {
+	  background-image: url("canal.jpg");           
+	  background-size: 2130px 1213px;
+	  background-repeat: no-repeat
+	  
+	}
+</style>
+
+	<meta charset="UTF-8">
+	<title>Plantaciones de caña de azúcar en CoopeVictoria R.L.</title>   
+
+	<!-- Hoja de estilos CSS de Leaflet -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>	
+	<!-- Biblioteca JS de Leaflet -->
+	<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>	
+	<!-- Complemento Leaflet-providers -->
+	<script src="js/leaflet-providers.js"></script>	
+	
+	<!-- Hoja de estilos CSS adicionales -->
+	<link rel="stylesheet" href="css/estilos.css"/>	
+
+	<!-- En HTML: enlace a Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+	integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+	crossorigin="anonymous" />
+	
+	<!-- Enlace a biblioteca JQuery -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous">
+	
+</script>
+	
+	
+</head>
+<body>
+
+<h1>Sistema de Monitoreo Satelital de las Plantaciones de Caña de Azúcar en CoopeVictoria R.L. </h1>
+
+<div class="row">
+  <div class="column" style="background:none">
+    <h2>SMS-CoopeVictoria R.L.</h2>
+    <p>Sistema de Monitoreo Satelital de las Plantaciones de Caña de Azúcar en CoopeVictoria R.L. pretende apoyar la gestión de las áreas de cultivo mediante información satelital. Esta iniativa que desarrollan el Centro de Investigaciones Agronómicas (<a href="http://www.cia.ucr.ac.cr/">CIA</a>) de la Universidad de Costa Rica (<a href="https://www.ucr.ac.cr/">UCR</a>) y
+	<a href="https://www.coopevictoria.com/">CoopeVictoria R.L.</a> surge por la necesidad de dotar de herramientas de agricultura de precisión al sector cooperativo costarricense.</p>
+
+	<div id="panel" style = "margin-left:0px; background-color:#D3D3D3;">
+					<label>Selecione una Finca</label>
+					<select id="estilo" onchange="estiloSelect()">
+					  <option value="TODOS"  >TODOS</option>
+					  <option value="ALAMEDA">ALAMEDA</option>
+					  <option value="ALFAROS">ALFAROS</option>
+					  <option value="ANA MARIA RIVERA HERRERO" >ANA MARIA RIVERA HERRERO</option>
+					  <option value="ARAYA" >ARAYA</option>
+					  <option value="ASSMAN" >ASSMAN</option>
+					  <option value="CELINA" >CELINA</option>
+					  <option value="CLOTILDE" >CLOTILDE</option>
+					  <option value="COYOL" >COYOL</option>
+					  <option value="DAVID" >DAVID</option>
+					  <option value="FINCA LA LUISA" >FINCA LA LUISA</option>
+					  <option value="FLORES" >FLORES</option>
+					  <option value="GENARO" >GENARO</option>
+					  <option value="GRUPO HERRERO LA ARGENTINA" >GRUPO HERRERO LA ARGENTINA</option>
+					  <option value="GRUPO MATEO AGUALOTE" >GRUPO MATEO AGUALOTE</option>
+					  <option value="JOSE MIGUEL FERNANDEZ" >JOSE MIGUEL FERNANDEZ</option>
+					  <option value="KOOPER CENTRAL" >KOOPER CENTRAL</option>
+					  <option value="MAQUINAS" >MAQUINAS</option>
+					  <option value="MAURICIO PERALTA" >MAURICIO PERALTA</option>
+					  <option value="MONTECRISTO" >MONTECRISTO</option>
+					  <option value="PINTO" >PINTO</option>
+					  <option value="POAS" >POAS</option>
+					  <option value="ROSALES" >ROSALES</option>
+					  <option value="SAN ROQUE" >SAN ROQUE</option>
+					  <option value="SANTA ELENA" >SANTA ELENA</option>
+					</select>
+		</div>
+	
+<!-- Elemento div para contener el mapa -->
+<div id="mapid"></div>	
+	
+  </div>
+  
+  <div class="column" style="background:none">
+    <h2>Información de interes</h2>
+    <h3>Reseña Historica</h3>
+	
+	<p> En el marco del convenio de colaboración entre la Universidad de Costa Rica y el Instituto Nacional de Fomento Cooperativo (<a href="http://www.infocoop.go.cr/">INFOCOOP</a>), el Centro de Investigaciones Agronómicas ha desarrollado un conjuntos de proyectos con el objetivo de dotar de herramientras de agricultura de precisión a distintas cooperativas del sector agroalimentario costarricense.</p>
+	
+	<center>
+	<iframe width="854" height="480" src="https://www.youtube.com/embed/MPniFw2rg-Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+   	</center>
+	
+	<center>
+	<img src="logoucr.png" alt="Logo UCR" width="250" height="150" align=”middle”><img src="logocia.png" alt="Logo del CIA" width="200" height="80" align=”middle”><img src="logocoope.png" alt="Logo de CoopeVictoria R.L." width="200" height="80" align=”middle”>
+	</center>
+	
+	<!-- Controles para la opacidad de la capa de temperatura -->
+	<h5>Opacidad de la capa NDVI: <span id="span-opacity">0.5</span></h5>
+	<input type='range' id='sld-opacity' min='0' max='1' step='0.1' value='0.5' onchange='updateOpacity();'>
+  </div>
+</div>
+	
+	<!-- Código principal en JS -->
+	<script src="js/scripts.js"></script>	
+	
+</body>
+</html>
+

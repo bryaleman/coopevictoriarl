@@ -206,7 +206,7 @@ $.getJSON("distritos_influencia.geojson", function(geodata) {
 			return {'color': "#000000", 'weight': 1, 'fillOpacity': 0.0}
 		},
 		onEachFeature: function(feature, layer) {
-			var popupText = "Provincia: " + feature.properties.provincia + "<br>" + "Cantón: " + feature.properties.canton +
+			var popupText = "Provincia: "Alto: " + feature.properties.provincia + "Medio: " + feature.properties.provincia + "Bajo: " + feature.properties.provincia + "<br>" + "Cantón: " + feature.properties.canton +
 			"<br>" + "Distrito: " + feature.properties.distrito + "<br>" + "Área: " + feature.properties.area;
 			layer.bindPopup(popupText);
 		}			

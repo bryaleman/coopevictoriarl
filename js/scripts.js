@@ -22,33 +22,37 @@ var ndvi = L.imageOverlay("ndvi.png",
 	[[10.1387257937176312, -84.3679128707571806], 
 	[9.9967152737829750, -84.2313861376834154]], 
 	{opacity:0.8}
-).addTo(map);
+); //.addTo(map); se eliminó esta parte para que no aparesca en la vista
 
-function updateOpacity() {
-	document.getElementById("span-opacity").innerHTML = document.getElementById("sld-opacity").value;
-	ndvi.setOpacity(document.getElementById("sld-opacity").value);
-}
+//function updateOpacity() {
+//	document.getElementById("span-opacity").innerHTML = document.getElementById("sld-opacity").value;
+//	ndvi.setOpacity(document.getElementById("sld-opacity").value);
+//}
 
-
-
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Conjunto de control de Capas Base
 var baseMaps = {
-	"ESRI World Imagery": esri,
-	"OpenStreetMap": osm   
+	"OpenStreetMap": osm,
+	"ESRI World Imagery": esri
 };
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Conjunto de capas overlay
 var overlayMaps = {
-	"NDVI Diciembre 2018": ndvi
+	
 };
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 // Fincas de CoopeVictoria
 $.getJSON("lotes_coopevictoriarl.geojson", function(geodata) {
 	var layer_geojson_lotes_coopevictoriarl = L.geoJson(geodata, {
 		style: function(feature) {
-			return {'color': "#c71d1a", 'weight': 1, 'fillOpacity': 0.0}
+			return {'color': "black", 'weight': 1, 'fillOpacity': 0.0}
 		},
 		onEachFeature: function(feature, layer) {
 			var popupText = "Finca: " + feature.properties.FINCA + "<br>" + "Lote: " + feature.properties.LOTE +
@@ -56,55 +60,59 @@ $.getJSON("lotes_coopevictoriarl.geojson", function(geodata) {
 			layer.bindPopup(popupText);
 		}			
 	}).addTo(map);
-	control_layers.addOverlay(layer_geojson_lotes_coopevictoriarl, 'Plantaciones de Caña CoopeVictoria R.L.');
+	control_layers.addOverlay(layer_geojson_lotes_coopevictoriarl, 'Plantaciones de caña CoopeVictoria R.L.');
 });
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Mapa de Coropletas
 
-// Paleta de colores capa producción 2018
+// Paleta de colores capa NDVI en base a 100
 function getColor(d) {
-    return d > 102 ? '#2b83ba' :
-           d > 95 ? '#5E610B' :
-           d > 92 ? '#c7e9ad' :
-           d > 84 ? '#ffffbf' :
-           d > 72 ? '#fec980' :
-		   d > 62 ? '#f17c4a' :
-		   d > 44 ? '#d7191c' :
+    return d > 90 ? '#2b83ba' :
+           d > 80 ? '#74b6ad' :
+           d > 70 ? '#b7e2a8' :
+           d > 60 ? '#e7f5b7' :
+           d > 50 ? '#cab985' :
+		   d > 40 ? '#c9965c' :
+		   d > 30 ? '#bd5c3b' :
+		   d > 20 ? '#d7191c' :
                     '#FFEDA0';
 }
 
-// LLamado y estilo de capa 
-$.getJSON("rendimiento2018.geojson", function(geodata) {
-	var layer_geojson_rendimiento2018 = L.geoJson(geodata, {
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// LLamado y estilo de capa para el mapa de rendimiento
+$.getJSON("ndvi.geojson", function(geodata) {
+	var layer_geojson_ndvi = L.geoJson(geodata, {
 		style: function(feature) {
 			return {
-				fillColor: getColor(feature.properties.PROD_18),
-				weight: 1,
+				fillColor: getColor(feature.properties.NDVI),
+				weight: 0.1,
 				opacity: 1,
 				color: '#7f8c8d',
-				fillOpacity: 0.5
+				fillOpacity: 0.8
 				}
 		},
 		onEachFeature: function(feature, layer) {
-			var popupText = "Finca: " + feature.properties.FINCA + "<br>" + 
-			"Rendimiento de Campo: " + feature.properties.PROD_18 + " Ton/Ha" + "<br>" + 
-			"Rendimiento Industrial: " + feature.properties.RENDI_18 + " kg Azúcar/Ton";
+			var popupText = "Valor de NDVI: " + feature.properties.NDVI + "<br>";
 			layer.bindPopup(popupText);
 		}			
 	}).addTo(map);
-	control_layers.addOverlay(layer_geojson_rendimiento2018, 'Rendimiento 2018');
-	layer_geojson_rendimiento2018.remove();
+	control_layers.addOverlay(layer_geojson_ndvi, 'NDVI noviembre 2019');
+	layer_geojson_ndvi.remove();
 });
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Leyenda
+// Leyenda del Rendimiento NDVI
 
 var legend = L.control({position: 'bottomright'});
-legend.title =
+legend.title = 
 legend.onAdd = function (map) {
 	var div = L.DomUtil.create('div', 'info legend'),
-		grades = [44, 62, 72, 84, 92, 95, 102],
+		grades = [20, 30, 40, 50, 60, 70, 80, 90],
          labels = ['<strong> THE TITLE </strong>'],
         from, to;
     for (var i = 0; i < grades.length; i++) {
@@ -116,12 +124,11 @@ legend.onAdd = function (map) {
 };
 legend.addTo(map);
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Selección de fincas segun interes 
 
 var fincas_coope = L.layerGroup().addTo(map);
-
 
 function colorFincas(d) { 
 	return d == "TODOS" ? '#FFFF00' :
@@ -175,6 +182,7 @@ function myFunction() {
 };
 
 
+
 function estiloSelect() {
 	var miSelect = document.getElementById("estilo").value;
 	
@@ -198,6 +206,8 @@ function estiloSelect() {
 	});		
 };
 	
+	
+	
 
 // Distritos de Influencia
 $.getJSON("distritos_influencia.geojson", function(geodata) {
@@ -206,12 +216,27 @@ $.getJSON("distritos_influencia.geojson", function(geodata) {
 			return {'color': "#000000", 'weight': 1, 'fillOpacity': 0.0}
 		},
 		onEachFeature: function(feature, layer) {
-			var popupText = "Provincia: " +"Alto: " + feature.properties.provincia + " Medio: " + feature.properties.provincia + " Bajo: " + feature.properties.provincia + "<br>" + "Cantón: " + feature.properties.canton +
+			var popupText = "Provincia: " + feature.properties.provincia + "<br>" + "Cantón: " + feature.properties.canton +
 			"<br>" + "Distrito: " + feature.properties.distrito + "<br>" + "Área: " + feature.properties.area;
 			layer.bindPopup(popupText);
 		}			
 	}).addTo(map);
 	control_layers.addOverlay(layer_geojson_distritos_influencia, 'Distritos');
+});
+
+
+// Fincas de CoopeVictoria
+$.getJSON("rendimientohistorico.geojson", function(geodata) {
+	var layer_geojson_historial = L.geoJson(geodata, {
+		style: function(feature) {
+			return {'color': "black", 'weight': 1, 'fillOpacity': 0.0}
+		},
+		onEachFeature: function(feature, layer) {
+			var popupText = "Rendimiento de Campo 2016-2017: " + feature.properties.PROD_16 +  " Ton/ha" + "<br>" + "Rendimiento de Campo 2017-2018: " + feature.properties.PROD_17 + " Ton/ha" +"<br>" + "Rendimiento de Campo 2018-2019: " + feature.properties.PROD_18 + " Ton/ha" +"<br>" + "Rendimiento de Campo 2019-2020: " + feature.properties.PROD_19+" Ton/ha" ;
+			layer.bindPopup(popupText);
+		}			
+	}).addTo(map);
+	control_layers.addOverlay(layer_geojson_historial, 'Historial de rendimiento de campo');
 });
 
 

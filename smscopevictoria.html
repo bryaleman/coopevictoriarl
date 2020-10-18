@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+<link rel="stylesheet" type="text/css" href="style.css">	
+<link rel="stylesheet" type="text/css" href="style_barra.css">
+	
+    <title>Plantaciones de caña de azúcar en CoopeVictoria R.L.</title>   
+
+
+<style> 
+	body  {
+	  background-image: url("canal.jpg");           
+	  background-size: 1269px 843px;
+	  background-repeat: no-repeat; 
+	  
+	}
+</style>
+
+<meta charset="UTF-8">
+	   
+
+	<!-- Hoja de estilos CSS de Leaflet -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>	
+	<!-- Biblioteca JS de Leaflet -->
+	<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>	
+	<!-- Complemento Leaflet-providers -->
+	<script src="js/leaflet-providers.js"></script>	
+	
+	<!-- En HTML: enlace a Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+	integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+	crossorigin="anonymous" />
+	
+	<!-- Enlace a biblioteca JQuery -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous">
+	
+</script>
+</head>
+
+<body>
+
+<div class="topnav">
+  <a href="index.html">Home</a>
+  <a class="active"  href="smscopevictoria.html">SMS-CoopeVictoria R.L.</a>
+  <a href="contactos.html">Contactos</a>
+</div>
+
+<h1 style="text-align:center;margin-left: 100px; margin-right: 100px;" >Sistema de Monitoreo Satelital de las Plantaciones de Caña de Azúcar en CoopeVictoria R.L. </h1>
+
+
+<div id="panel" style = "margin-left:75px; margin-right: 71px; background-color:#D3D3D3;">
+					<label>Selecione una Finca</label>
+					<select id="estilo" onchange="estiloSelect()">
+					  <option value="TODOS">TODOS</option>
+					  <option value="ALAMEDA">ALAMEDA</option>
+					  <option value="ALFAROS">ALFAROS</option>
+					  <option value="ANA MARIA RIVERA HERRERO" >ANA MARIA RIVERA HERRERO</option>
+					  <option value="ARAYA" >ARAYA</option>
+					  <option value="ASSMAN" >ASSMAN</option>
+					  <option value="CELINA" >CELINA</option>
+					  <option value="CLOTILDE" >CLOTILDE</option>
+					  <option value="COYOL" >COYOL</option>
+					  <option value="DAVID" >DAVID</option>
+					  <option value="FINCA LA LUISA" >FINCA LA LUISA</option>
+					  <option value="FLORES" >FLORES</option>
+					  <option value="GENARO" >GENARO</option>
+					  <option value="GRUPO HERRERO LA ARGENTINA" >GRUPO HERRERO LA ARGENTINA</option>
+					  <option value="GRUPO MATEO AGUALOTE" >GRUPO MATEO AGUALOTE</option>
+					  <option value="JOSE MIGUEL FERNANDEZ" >JOSE MIGUEL FERNANDEZ</option>
+					  <option value="KOOPER CENTRAL" >KOOPER CENTRAL</option>
+					  <option value="MAQUINAS" >MAQUINAS</option>
+					  <option value="MAURICIO PERALTA" >MAURICIO PERALTA</option>
+					  <option value="MONTECRISTO" >MONTECRISTO</option>
+					  <option value="PINTO" >PINTO</option>
+					  <option value="POAS" >POAS</option>
+					  <option value="ROSALES" >ROSALES</option>
+					  <option value="SAN ROQUE" >SAN ROQUE</option>
+					  <option value="SANTA ELENA" >SANTA ELENA</option>
+					</select>
+</div>
+	
+<!-- Elemento div para contener el mapa -->
+<div id="mapid"></div>	
+
+
+<!-- Código principal en JS -->
+	<script src="js/scripts.js"></script>	
+
+
+ 
+<!--<div class="row" style="background:rgba(255,255,255,.85);margin-top: 80px;"> 
+ <center>
+	<img src="logoucr.png" alt="Logo UCR" width="470" height="100" align=”middle”><img src="logocia.png" alt="Logo del CIA" width="240" height="98" align=”middle”><img src="logocoope.png" alt="Logo de CoopeVictoria R.L." width="280" height="110" align=”middle”>
+  </center>
+
+ </div>-->
+
+</body>
+</html>

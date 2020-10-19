@@ -60,7 +60,7 @@ $.getJSON("lotes_coopevictoriarl.geojson", function(geodata) {
 			layer.bindPopup(popupText);
 		}			
 	}).addTo(map);
-	control_layers.addOverlay(layer_geojson_lotes_coopevictoriarl, 'Plantaciones de caña CoopeVictoria R.L.');
+	control_layers.addOverlay(layer_geojson_lotes_coopevictoriarl, 'Áreas de Producción');
 });
 
 
@@ -100,22 +100,22 @@ $.getJSON("ndvi.geojson", function(geodata) {
 			layer.bindPopup(popupText);
 		}			
 	}).addTo(map);
-	control_layers.addOverlay(layer_geojson_ndvi, 'NDVI noviembre 2019');
-	layer_geojson_ndvi.remove();
+	control_layers.addOverlay(layer_geojson_ndvi, 'NDVI Calculado con el Sensor Sentinel 2');
+	
 });
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Leyenda del Rendimiento NDVI
+// Leyenda del NDVI
 
 var legend = L.control({position: 'bottomright'});
 legend.title = 
 legend.onAdd = function (map) {
 	var div = L.DomUtil.create('div', 'info legend'),
 		grades = [20, 30, 40, 50, 60, 70, 80, 90],
-         labels = ['<strong> THE TITLE </strong>'],
+         labels = ['Categories'],
         from, to;
-    for (var i = 0; i < grades.length; i++) {
+	for (var i = 0; i < grades.length; i++) {
         div.innerHTML +=
             '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
             grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
@@ -221,7 +221,8 @@ $.getJSON("distritos_influencia.geojson", function(geodata) {
 			layer.bindPopup(popupText);
 		}			
 	}).addTo(map);
-	control_layers.addOverlay(layer_geojson_distritos_influencia, 'Distritos');
+	control_layers.addOverlay(layer_geojson_distritos_influencia, 'Distritos de Influencia');
+	layer_geojson_ndvi.remove();
 });
 
 
@@ -232,11 +233,11 @@ $.getJSON("rendimientohistorico.geojson", function(geodata) {
 			return {'color': "black", 'weight': 1, 'fillOpacity': 0.0}
 		},
 		onEachFeature: function(feature, layer) {
-			var popupText = "Rendimiento de Campo 2016-2017: " + feature.properties.PROD_16 +  " Ton/ha" + "<br>" + "Rendimiento de Campo 2017-2018: " + feature.properties.PROD_17 + " Ton/ha" +"<br>" + "Rendimiento de Campo 2018-2019: " + feature.properties.PROD_18 + " Ton/ha" +"<br>" + "Rendimiento de Campo 2019-2020: " + feature.properties.PROD_19+" Ton/ha" ;
+			var popupText = "Zafra 2016-2017: " + feature.properties.PROD_16 +  " Ton/ha" + "<br>" + "Zafra 2017-2018: " + feature.properties.PROD_17 + " Ton/ha" +"<br>" + "Zafra 2018-2019: " + feature.properties.PROD_18 + " Ton/ha" +"<br>" + "Zafra 2019-2020: " + feature.properties.PROD_19+" Ton/ha" ;
 			layer.bindPopup(popupText);
 		}			
 	}).addTo(map);
-	control_layers.addOverlay(layer_geojson_historial, 'Historial de rendimiento de campo');
+	control_layers.addOverlay(layer_geojson_historial, 'Historial de Cosecha por Finca');
 });
 
 

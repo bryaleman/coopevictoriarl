@@ -56,7 +56,7 @@ $.getJSON("lotes_coopevictoriarl.geojson", function(geodata) {
 		},
 		onEachFeature: function(feature, layer) {
 			var popupText = "Finca: " + feature.properties.FINCA + "<br>" + "Lote: " + feature.properties.LOTE +
-			"<br>" + "Variedad: " + feature.properties.VARIEDAD + "<br>" + "Área: " + feature.properties.AREA;
+			"<br>" + "Variedad: " + feature.properties.VARIEDAD + "<br>" + "Área: " + feature.properties.AREA + " ha";
 			layer.bindPopup(popupText);
 		}			
 	}).addTo(map);

@@ -235,7 +235,7 @@ $.getJSON("rendimientohistorico.geojson", function(geodata) {
 		onEachFeature: function(feature, layer) {
 			var popupText = "Finca: " + feature.properties.FINCA + "<br>" + "Zafra 2016-2017: " + feature.properties.PROD_16 +  " Ton/ha" + "<br>" + 
 			    "Zafra 2017-2018: " + feature.properties.PROD_17 + " Ton/ha" +"<br>" + "Zafra 2018-2019: " + feature.properties.PROD_18 + " Ton/ha" +"<br>" + 
-			    "Zafra 2019-2020: " + feature.properties.PROD_19+" Ton/ha" +"<br>" + "Zafra  Estimada 2020-2021: " + feature.properties.PROD_20 +" Ton/ha" ;
+			    "Zafra 2019-2020: " + feature.properties.PROD_19+" Ton/ha" +"<br>" + "Zafra 2020-2021 (Estimada): " + feature.properties.PROD_20 +" Ton/ha" ;
 			layer.bindPopup(popupText);
 		}			
 	}).addTo(map);

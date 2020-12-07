@@ -233,7 +233,7 @@ $.getJSON("rendimientohistorico.geojson", function(geodata) {
 			return {'color': "black", 'weight': 1, 'fillOpacity': 0.0}
 		},
 		onEachFeature: function(feature, layer) {
-			var popupText = "Zafra 2016-2017: " + feature.properties.PROD_16 +  " Ton/ha" + "<br>" + "Zafra 2017-2018: " + feature.properties.PROD_17 + " Ton/ha" +"<br>" + "Zafra 2018-2019: " + feature.properties.PROD_18 + " Ton/ha" +"<br>" + "Zafra 2019-2020: " + feature.properties.PROD_19+" Ton/ha" ;
+			var popupText = "Zafra 2016-2017: " + feature.properties.PROD_16 +  " Ton/ha" + "<br>" + "Zafra 2017-2018: " + feature.properties.PROD_17 + " Ton/ha" +"<br>" + "Zafra 2018-2019: " + feature.properties.PROD_18 + " Ton/ha" +"<br>" + "Zafra 2019-2020: " + feature.properties.PROD_19+" Ton/ha" +"<br>" + "Zafra  Est 2020-21: " + feature.properties.PROD_20+" Ton/ha" ;
 			layer.bindPopup(popupText);
 		}			
 	}).addTo(map);
